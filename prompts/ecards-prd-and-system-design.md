@@ -5,6 +5,7 @@
 - Paste everything inside the `PROMPT` block into Claude as a single message. If your Claude client can search the web (Claude.ai with web search on, or the API with the web search tool), turn it on so the competitor research uses current data.
 - The full deliverable is long. The prompt tells Claude to work in **phases** and stop after each one so you can review and steer. Reply `continue` to move on, or give feedback first.
 - Fill in the optional `<founder_inputs>` block if you already know your budget, team size, launch date or price points. Anything left blank becomes an assumption that Claude states openly.
+- **Always fill in `<today>`.** Claude doesn't reliably know the current date, and the launch plan depends on which festivals are still ahead.
 
 ---
 
@@ -44,12 +45,14 @@ Core requirements from the founder:
 </product_context>
 
 <founder_inputs>
-<!-- Optional. Fill in what you know; delete what you don't. -->
+<!-- Fill in <today>. Everything else is optional: fill in what you know, delete what you don't. -->
+<today></today>
 <budget></budget>
 <team_size_and_skills></team_size_and_skills>
 <target_launch_date></target_launch_date>
 <preferred_cloud_or_stack></preferred_cloud_or_stack>
 <expected_users_year_1></expected_users_year_1>
+<platform_preference><!-- web only / PWA / Android app / not decided --></platform_preference>
 </founder_inputs>
 
 <instructions>
@@ -59,16 +62,22 @@ Core requirements from the founder:
 - **Be specific to India.** Generic global SaaS advice is not useful here. Each recommendation should show why it fits Indian users, Indian payments, Indian regulation or Indian network and device conditions (low-end Android, patchy 4G, data-cost sensitivity).
 - **Give decisions, not menus.** When there are options, compare them briefly and then commit to one recommendation, with what would make you change it.
 - **Persuasive, not deceptive.** Use strong conversion patterns, but every badge, discount and scarcity cue must be **truthful and data-driven**. Comply with the Consumer Protection Act and the **CCPA Guidelines for Prevention and Regulation of Dark Patterns, 2023** (no false urgency, no fake scarcity, no drip pricing, no basket sneaking, no confirm-shaming, no subscription traps). Say how each persuasive element is backed by real data. For example, "Bestseller" = top N by purchases in the last 7 days per category, and the MRP must be a price that was really charged.
-- **Phase it.** Separate MVP (launch in ~3–4 months with a small team), V1 (6–9 months) and Later. Keep the MVP small enough to ship.
+- **Free is the default in India.** Users already get free festival greetings from WhatsApp forwards, Crafto-style apps and Canva. Treat "will people pay?" as the riskiest assumption. Don't hide it: size it, test it cheaply, and design revenue streams that don't depend only on individual consumers paying.
+- **Every shared card is an ad.** Growth comes mainly from WhatsApp sharing, not paid ads. Design the recipient's experience and the "make your own" loop as carefully as the sender's.
+- **Plan for seasonality.** Demand peaks around festivals and drops in between. Address retention between festivals and what the peaks and troughs mean for cash flow, content production and infrastructure.
+- **Phase it.** Separate MVP (launch in ~3–4 months with a small team), V1 (6–9 months) and Later. Keep the MVP small enough to ship. If all the founder's requirements don't fit in the MVP, say what to cut or simplify (for example, video templates with a limited set of effects, or fewer launch languages for video) and why.
 
 ## Phase 1 — Market and competitor research
 Study at least 8–10 relevant products. Pick the right mix from, for example: 123Greetings, Dgreetings, Canva (India), Crafto, Kutumb / regional greeting apps, Greetings Island, Punchbowl, Jacquie Lawson, Smilebox, video-invite makers popular for Indian weddings (e.g. invitation-video apps on the Play Store), WhatsApp sticker/status apps, and the commerce UX of Meesho, Flipkart, Myntra and Zomato/Swiggy for pricing and discount patterns.
 
-For each one, cover: target user, catalogue and template strategy, free vs. paid model and price points (in ₹), language support, sharing flow, conversion and UX tactics, strengths, and weaknesses or gaps.
+Use competitors as a reference for India-specific behaviour. Global products (Greetings Island, Punchbowl, Jacquie Lawson, Smilebox) are benchmarks for template quality and paid models, not for Indian willingness to pay, so label them as global benchmarks. Also look at **Play Store and App Store reviews** of the Indian apps: low-rated reviews show the unmet needs and complaints this product can win on.
+
+For each one, cover: target user, catalogue and template strategy, free vs. paid model and price points (in ₹), revenue streams other than consumer purchases (ads, business/branded posters, subscriptions), language support, Android app vs. web, sharing flow, conversion and UX tactics, strengths, and weaknesses or gaps.
 
 Then give:
 - A **comparison table**.
 - **Market sizing logic** (TAM/SAM/SOM, approach and assumptions, in ₹).
+- **Willingness to pay**: what Indian users actually pay for in this category (e.g. wedding invitation videos, personalised photo cards, business greetings) vs. what they expect free. Compare B2C with small businesses (shops, agents, doctors, coaching centres) that send branded festival wishes to customers, and with corporate HR/bulk greetings.
 - **5–7 user personas** across metro and Bharat, age groups (including 45+ users who send "Good Morning" and festival wishes), and B2C vs. small-business/corporate use.
 - **Key insights and white-space opportunities** that this product should own.
 
@@ -77,26 +86,33 @@ Then give:
 ## Phase 2 — Product Requirements Document (PRD)
 Write a complete PRD with:
 1. Problem statement, vision, goals and non-goals.
-2. Success metrics (north-star metric plus input metrics), with target values for MVP.
-3. **Monetisation and pricing**: free vs. premium tiers, per-template pricing (₹), bundles and festival packs, any subscription or "Pro" pass, sachet pricing (₹9–₹49 range — validate it), coupons and referral credits, and GST-inclusive display. Include a simple unit-economics sketch.
-4. **Feature list** with MoSCoW priority and phase (MVP/V1/Later). At minimum cover:
+2. Success metrics (north-star metric plus input metrics), with target values for MVP. Include free-to-paid conversion, ARPPU, recipient-to-creator conversion (viral coefficient), and retention measured across festival cycles, not only week over week.
+3. **Riskiest assumptions and validation plan**: list the 5 assumptions that would kill the business if wrong (e.g. willingness to pay, template supply cost, video render cost per card). For each, give a cheap test to run **before or alongside** the MVP build, such as a pre-sale landing page for an upcoming festival, a WhatsApp/Instagram pilot with a few templates, or a fake-door test on paid tiers.
+4. **Monetisation and pricing**: free vs. premium tiers, per-template pricing (₹), bundles and festival packs, any subscription or "Pro" pass, sachet pricing (₹9–₹49 range — validate it), coupons and referral credits, and GST-inclusive display. Evaluate revenue beyond individual purchases: **business plans** (logo, shop name and contact on every card, bulk sending), corporate bulk orders, and **digital shagun/gifting** (attaching a cash gift by UPI or a gift card to a wedding or birthday card, noting any regulatory constraints). Decide whether the free tier carries ads. Include a simple unit-economics sketch that covers render and CDN cost per card, payment gateway fees and template production cost.
+5. **Feature list** with MoSCoW priority and phase (MVP/V1/Later). At minimum cover:
    - Template discovery: festival calendar–driven home, categories, search across 4 languages, filters, and regional relevance (e.g. Pongal for Tamil users, Gudi Padwa for Marathi users).
-   - Editor: text, photo upload, name personalisation, font choice with proper Indic script rendering, music for video cards, live preview, and transliteration typing (type "Diwali ki shubhkamnayein" in Latin letters and get Devanagari).
+   - Editor: text, photo upload (with background removal, since putting the sender's photo on the card is a key driver in Indian greeting apps), name personalisation, font choice with proper Indic script rendering, music for video cards, live preview, and transliteration typing (type "Diwali ki shubhkamnayein" in Latin letters and get Devanagari).
    - Image and video rendering, watermarking on free/preview output, download quality tiers.
-   - Sharing: WhatsApp-first deep links, Instagram/Facebook, download, unique shareable card URL with OG previews, and an optional scheduled send.
+   - Sharing: WhatsApp-first deep links, WhatsApp Status-sized output (9:16), Instagram/Facebook, download, unique shareable card URL with OG previews, and an optional scheduled send.
+   - **Recipient experience and viral loop**: the card page opens instantly in the WhatsApp in-app browser on a low-end phone, with no login, and has a clear "Make your own card" call to action that keeps the festival context. Include reply or "send wishes back" options.
+   - **Retention between festivals**: birthday and anniversary reminders from saved contacts (with consent), a personal festival calendar by region, daily greetings (Good Morning / weekday wishes, which are huge with 45+ users), and notifications that don't become spam.
    - Accounts: OTP login by phone (primary), Google login, guest checkout.
-   - Checkout: UPI intent/collect/QR, cards, net banking, wallets; invoices and order history.
+   - Checkout: UPI intent on mobile and UPI QR on desktop as the primary methods (check current NPCI rules on UPI collect requests before relying on them), cards, net banking, wallets; a clear "payment pending" state for UPI; UPI Autopay if there's a subscription; invoices and order history.
    - Creator/contributor marketplace (scope it as V1 or Later, with a revenue-share model).
+   - **Template supply**: in-house designers vs. freelancers vs. a contributor marketplace vs. AI-assisted generation. Cover cost per template, quality control, a production calendar that starts 6–8 weeks before each festival, and how many templates per festival, per language, are needed at launch.
+   - **AI features**: AI-written wishes in all 4 languages with tone choice (formal, emotional, funny), and AI-assisted personalisation. Decide whether each belongs in MVP, V1 or Later, and include its cost per use.
    - Admin/CMS: template upload, tagging, pricing, festival campaign scheduling, banner management, refund dashboard.
-5. **Detailed user stories** with acceptance criteria for the core flows: browse → personalise → pay → render → share, plus refund on failure.
-6. **Localisation strategy**: i18n framework, translation workflow, Indic fonts (e.g. Noto Sans Devanagari / Tamil), complex script shaping in both image and video rendering, number and date formats, language detection and switching, and SEO for each language (hreflang, localised URLs).
-7. **Edge cases and failure states** written from the user's point of view.
+6. **Detailed user stories** with acceptance criteria for the core flows: browse → personalise → pay → render → share, plus refund on failure.
+7. **Localisation strategy**: i18n framework, translation workflow, Indic fonts (e.g. Noto Sans Devanagari / Tamil), complex script shaping in both image and video rendering, number and date formats, language detection and switching, and SEO for each language (hreflang, localised URLs). Cover **Hinglish** and other mixed-language content (many users type Hindi or Marathi in Latin letters and search that way), regional variation in festival names and dates (lunar calendar dates change every year and can differ by region), and an authoritative festival-date data source.
+8. **Edge cases and failure states** written from the user's point of view.
+9. **Content and legal risks**: **music licensing** for video cards (Bollywood and film songs are copyrighted, so use licensed or royalty-free music and check the IPRS/PPL position), rights to fonts and stock assets, respectful handling of religious imagery and deities (where they may appear, whether users can add text over them), and the trademark risk of using brand or celebrity names in templates.
+10. **Platform decision**: responsive website vs. PWA vs. Android app for MVP, given that most Indian users are on Android and many find services through the Play Store. Recommend one, with a path to the others.
 
 ## Phase 3 — UX and conversion design
 Acting as the senior UX designer:
 1. **Information architecture** and sitemap.
 2. **Screen-by-screen wireframe descriptions** for the MVP. Use ASCII or a clear structured description for Home, Category, Template Detail, Editor, Checkout, Success/Share, and My Cards.
-3. **Conversion playbook**: for each tactic, give where it appears, the trigger rule, the data source that makes it truthful, the expected impact, and the A/B test to validate it. Include at least: MRP strike-through with % off, "Bestseller" / "Trending in your city" / "New" badges, purchase counts ("12,430 people sent this"), festival countdown timers tied to the real festival date, "Free preview, pay to remove watermark", bundles ("Diwali pack: 5 cards for ₹49"), first-purchase offer, cart and checkout abandonment recovery (WhatsApp/SMS/email, with consent), and price anchoring with a decoy tier.
+3. **Conversion playbook**: for each tactic, give where it appears, the trigger rule, the data source that makes it truthful, the expected impact, and the A/B test to validate it. Include at least: MRP strike-through with % off, "Bestseller" / "Trending in your city" / "New" badges, purchase counts ("12,430 people sent this"), festival countdown timers tied to the real festival date, "Free preview, pay to remove watermark", bundles ("Diwali pack: 5 cards for ₹49"), first-purchase offer, unlocking a premium template by sharing or referring, cart and checkout abandonment recovery (WhatsApp/SMS/email, with consent), and price anchoring with a decoy tier.
 4. **Mobile-first and performance UX**: designing for low-end Android and slow networks, skeleton screens, progressive video previews, and a data-saver mode.
 5. **Accessibility** (WCAG 2.1 AA) and the design system basics: colour, typography for 4 scripts, festive theming per season.
 
@@ -112,7 +128,7 @@ Acting as the principal architect:
 
 ## Phase 5 — Payments, refunds and reconciliation
 Acting as the payments engineer:
-1. **Gateway selection**: compare Razorpay, Cashfree, PayU and others on UPI success rates, fees, refund APIs, instant refunds, webhooks, settlement time and developer experience. Recommend a primary gateway and whether to add a fallback or a multi-gateway router.
+1. **Gateway selection**: compare Razorpay, Cashfree, PayU and others on UPI success rates, fees, refund APIs, instant refunds, webhooks, settlement time developer experience, UPI Autopay/subscription support and support for businesses at your stage (onboarding, KYC). Recommend a primary gateway and whether to add a fallback or a multi-gateway router.
 2. **Secure payment architecture**: sequence diagrams (Mermaid) for checkout, webhook handling and refunds. Cover server-side order creation, signature verification, webhook HMAC validation, idempotency, never trusting client-side success, the order/payment **state machine** (with all states and transitions), and handling of duplicate and late webhooks.
 3. **Automatic refund flow**: what counts as a failure (payment captured but render failed, delivery timed out, duplicate charge, etc.), retry policy before a refund, the refund state machine, how the user is told, and SLA targets.
 4. **Reconciliation**: a daily job that matches the gateway settlement reports against internal orders, plus handling of mismatches.
@@ -136,8 +152,8 @@ Acting as the payments engineer:
 1. A milestone roadmap (MVP → V1 → V2) with scope for each phase.
 2. Recommended team composition for the MVP.
 3. A monthly infrastructure cost estimate (₹) at 10K, 100K and 1M MAU, with the main cost drivers (video rendering, CDN egress) and how to optimise them.
-4. The top 10 risks (product, technical, regulatory, market), each with a mitigation.
-5. A launch go-to-market plan built around the festival calendar (which festival to launch on, and why).
+4. The top 10 risks (product, technical, regulatory, market), each with a mitigation. Include low willingness to pay, a large free player (e.g. Canva or a WhatsApp-native app) copying the idea, and the cost of video rendering at festival peaks.
+5. A launch go-to-market plan built around the festival calendar, counted from `<today>`: which festival to launch on, and why, allowing for build time and 6–8 weeks of template production. Cover acquisition channels with ₹ budgets and expected CAC: WhatsApp sharing, Instagram Reels, regional YouTube creators, SEO for "<festival> wishes in <language>" searches, Play Store optimisation, and business partnerships.
 
 </instructions>
 
@@ -158,6 +174,8 @@ Before you finish each phase, check your work against this list:
 - Is every persuasive UX element backed by real data and compliant with the dark-pattern guidelines?
 - Could an engineering team start building from this without guessing about payments, refunds, logging or security?
 - Are all numbers labelled as verified, estimate or assumption?
+- Did I treat willingness to pay as the riskiest assumption and give a way to test it?
+- Did I design for the recipient and the viral loop, not only the sender?
 </quality_bar>
 
 Begin with **Phase 1**.
