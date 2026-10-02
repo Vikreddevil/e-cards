@@ -15,6 +15,7 @@
 | 06 | [Logging, monitoring, alerting and analytics](06-observability-and-analytics.md) | Log table DDL, observability stack, 19 critical alerts with email routing and de-duplication, PostHog event taxonomy, funnels, experimentation |
 | 07 | [Security and compliance](07-security-and-compliance.md) | STRIDE threat model, OWASP Top 10 + API Top 10 controls, upload pipeline, abuse prevention, content moderation (IT Rules 2026), DPDP Act compliance |
 | 08 | [Roadmap, team, cost, risks and GTM](08-roadmap-team-cost-gtm.md) | Festival calendar, Gantt roadmap, team and runway, infra cost at 10K/100K/1M MAU, top 10 risks, go-to-market plan with ₹ budgets |
+| 09 | [**Lean launch plan** (solo + Claude, go live ~16 Oct 2026)](09-lean-launch-plan.md) | **Start here for the first launch.** Reduced scope, user flow, ₹6–7k/month stack, launch pricing, 2-week schedule, go-live checklist, brand name |
 
 ## Executive summary
 
