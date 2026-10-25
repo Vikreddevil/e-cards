@@ -40,7 +40,7 @@ The "Notify me" rate and waitlist (`11-analytics-tracking-plan.md` §4.9) are **
 
 | Founder input | What it means for the plan |
 |---|---|
-| Go live after 1–2 weeks of build + testing | **Free launch (Phase 0) about 14 days after build start.** Payments follow in Phase 1. The original 16 Oct target passed before the build began. |
+| Staging in 2–3 days, a testing week, a free week, then payments | **Staging by Day 3, free production launch on Day 11, payments on Day 18** after the PRD go-ahead (`15-release-plan.md`). The original 16 Oct target passed before the build began. |
 | Go live free initially | Removes KYC, GST and entity from the critical path; measures demand with "Notify me" (§0). |
 | Solo founder; Claude does the development | No team payroll. Managed services only. Claude also writes the templates as code. You handle accounts, KYC, testing on phones, and marketing. |
 | Video invitations for Diwali and weddings | Launch catalogue = greetings (Diwali tail, Bhai Dooj, birthdays) + wedding and griha pravesh invitations (image + basic video free; premium video in Phase 1). |
