@@ -66,7 +66,7 @@ Without registration you still have limited rights from using the name first ("p
 | File | Use |
 |---|---|
 | `brand/logo-icon.svg` | App icon, social avatars, watermark on free cards (light backgrounds) |
-| `brand/logo-icon-dark.svg` | The same on dark backgrounds (card colour `#E5483C`) |
+| `brand/logo-icon-dark.svg` | The same on dark backgrounds (card colour `#8B5CF6`) |
 | `brand/logo-wordmark.svg` | Website header, emails, end card (light backgrounds) |
 | `brand/logo-wordmark-dark.svg` | The same on dark backgrounds |
 | `brand/favicon.svg` | Browser tab (simplified: 3 holes per edge) |
@@ -74,7 +74,7 @@ Without registration you still have limited rights from using the name first ("p
 **Rules:**
 - **Clear space** around the mark equals the height of one sprocket hole × 2.
 - **Minimum size:** 20px for the icon on screen, 96px wide for the wordmark.
-- **Wordmark colours:** "Card" in Ink and "Reel" in Kumkum (Night text and Light kumkum in dark mode).
+- **Wordmark colours:** "Card" in Plum and "Reel" in Violet (light text and light violet in dark mode).
 - **Don't** recolour the flame, add outlines or shadows, place the icon on busy photos without its card shape, or stretch it.
 - The SVG wordmark uses live text in **Baloo 2 Bold**. **Convert it to outlines** before printing or uploading to app stores.
 
@@ -86,32 +86,35 @@ Without registration you still have limited rights from using the name first ("p
 
 ## 5. Colour and type
 
-### 5.1 Brand palette: "Festive Warm"
-The founder can still switch to the Royal Jewel or Modern Minimal directions after seeing the brand board; the token names stay the same.
+### 5.1 Brand palette: "Purple & Marigold" (chosen)
+Modern and fresh, with a festive Indian feel: a royal violet with marigold (the flame) and mint (highlights). The founder chose it on the brand board over Teal & Coral, Pink Pop and Cobalt & Lime.
 
 | Token | Role | Light | Dark |
 |---|---|---|---|
-| `--kumkum` | Primary: buttons, links, logo card | `#B3261E` | `#FF8A80` (text/buttons) · `#E5483C` (logo card) |
-| `--marigold` | Accent: highlights, badges, flame. **Always with dark text; never as text on light backgrounds** | `#F2A007` | `#F2A007` |
-| `--leaf` | Secondary: success, "Free" tags | `#2E7D32` | `#81C784` |
-| `--ivory` / `--night` | Page background | `#FFF8EC` | `#1A1210` |
-| `--ink` | Body text | `#2B1B17` | `#F7EBDD` |
+| `--violet` | Primary: buttons, links, logo card, "Reel" in the wordmark | `#6D28D9` | `#B69CFF` (text/buttons) · `#8B5CF6` (logo card) |
+| `--marigold` | Accent: the flame, badges. **Fill only, always with dark text** | `#FFB627` | `#FFB627` |
+| `--mint` | Highlight: offers, "New" tags. **Fill only, always with dark text** | `#5EEAD4` | `#5EEAD4` |
+| `--lavender` / `--night` | Page background | `#FBF9FF` | `#151022` |
+| `--plum` | Body text, "Card" in the wordmark | `#1C1530` | `#F3EFFB` |
+| `--muted` | Secondary text | `#5A5270` | `#B7AECB` |
 
 **Contrast (WCAG 2.1; AA needs ≥ 4.5:1 for text, ≥ 3:1 for graphics):**
 
 | Pair | Ratio | Use |
 |---|---|---|
-| Ink on Ivory | **15.6:1** | Body text |
-| Kumkum on Ivory | **6.2:1** | Links, headings |
-| Ivory on Kumkum | **6.2:1** | Button labels |
-| Leaf on Ivory | **4.9:1** | "Free" labels |
-| Ink on Marigold | **7.7:1** | Badges |
-| Marigold on White | 2.1:1 | ❌ never for text; decoration only |
-| Light text on Night (dark mode) | **15.7:1** | Body text |
-| Light kumkum `#FF8A80` on Night | **8.1:1** | Links, buttons |
-| Night on light kumkum | **8.1:1** | Button labels (dark mode) |
-| Logo card `#E5483C` vs Night | **4.7:1** | Graphic |
-| Light leaf `#81C784` on Night | **9.2:1** | "Free" labels (dark mode) |
+| Plum on Lavender | **16.8:1** | Body text |
+| Violet on Lavender | **6.8:1** | Links, headings |
+| White on Violet | **7.1:1** | Button labels |
+| Muted on Lavender | **7.0:1** | Secondary text |
+| Plum on Marigold | **10.0:1** | Badges |
+| Plum on Mint | **11.8:1** | "New" tags |
+| Marigold or Mint as text on light backgrounds | — | ❌ never; fills only |
+| Light text `#F3EFFB` on Night (dark mode) | **16.4:1** | Body text |
+| Light violet `#B69CFF` on Night | **8.1:1** | Links, buttons |
+| Night on light violet | **8.1:1** | Button labels (dark mode) |
+| Logo card `#8B5CF6` vs `#111418` | **4.4:1** | Graphic |
+
+**Keep it distinct from other purple brands.** PhonePe uses a deep indigo with white, and Meesho a pink-purple. CardReel uses a brighter violet, **always paired with marigold and mint**, in solid colours. **No purple-to-blue gradients.**
 
 **Festival themes** sit on top of the brand palette, one per collection (see `03` §7): Diwali maroon + gold, Holi multi-colour on white, Pongal green + turmeric, Gudi Padwa saffron + green, Eid emerald + ivory, Christmas red + pine, Weddings rani pink + gold. The brand colours stay fixed in the header, buttons and logo.
 
@@ -164,6 +167,6 @@ Set `lang="hi" | "mr" | "ta"` on the content so Marathi-specific letter forms ar
 - [ ] Reserve the handles in §2
 - [ ] Free IP India search (§3)
 - [ ] Create support@cardreel.in (Zoho Mail)
-- [ ] Review the logo and colours on the brand board; confirm "Festive Warm" or switch direction
+- [x] Colour direction chosen: **Purple & Marigold**
 - [ ] Native review of the Hindi, Marathi and Tamil taglines
 - [ ] Before print or app stores: outline the wordmark text and export PNGs (512, 192, 180, 32 px)

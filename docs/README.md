@@ -74,7 +74,7 @@
 Each document ends with its own open questions. For the lean launch, these are the ones that block work:
 1. **Go-ahead on the PRD** to start the build (Day 1 of the schedule in `09` §6).
 2. **Buy `cardreel.in`**, reserve the social handles, and run the free trademark search (`13` §1–3).
-3. **Colour direction:** keep "Festive Warm" or switch to Royal Jewel / Modern Minimal on the brand board.
+3. ~~Colour direction~~ **Decided: Purple & Marigold** (violet `#6D28D9`, marigold `#FFB627`, mint `#5EEAD4`); see `13` §5.
 4. **Native reviewers** for Marathi and Tamil, and **licensed music** for video templates (`09` §7).
 5. For Phase 1 payments: **Razorpay KYC** once the site is live, and a **30-minute CA consultation** (`12`).
 
