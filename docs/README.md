@@ -15,7 +15,9 @@
 | 06 | [Logging, monitoring, alerting and analytics](06-observability-and-analytics.md) | Log table DDL, observability stack, 19 critical alerts with email routing and de-duplication, PostHog event taxonomy, funnels, experimentation |
 | 07 | [Security and compliance](07-security-and-compliance.md) | STRIDE threat model, OWASP Top 10 + API Top 10 controls, upload pipeline, abuse prevention, content moderation (IT Rules 2026), DPDP Act compliance |
 | 08 | [Roadmap, team, cost, risks and GTM](08-roadmap-team-cost-gtm.md) | Festival calendar, Gantt roadmap, team and runway, infra cost at 10K/100K/1M MAU, top 10 risks, go-to-market plan with ₹ budgets |
-| 09 | [**Lean launch plan** (solo + Claude, go live ~16 Oct 2026)](09-lean-launch-plan.md) | **Start here for the first launch.** Reduced scope, user flow, ₹6–7k/month stack, launch pricing, 2-week schedule, go-live checklist, brand name |
+| 09 | [**Lean launch plan** (solo + Claude, go live 14 Nov 2026)](09-lean-launch-plan.md) | **Start here for the first launch.** Source of truth for launch scope and pricing: reduced scope, user flow, ₹6–7k/month stack, launch pricing, re-baselined schedule, go-live checklist, brand name |
+| 10 | [Independent PRD review](10-prd-review.md) | Neutral review against Evite, Paperless Post, Punchbowl, Kudoboard, InvitiApp, NIMNTRN, Crafty Art and Indian invite makers: scorecard, 24 gaps with priorities, inconsistencies, launch re-baseline |
+| 11 | [Analytics tracking plan](11-analytics-tracking-plan.md) | Vendor-neutral event spec for user engagement: common envelope, 39 generic events, engagement metric definitions, launch KPIs, implementation guide, QA and governance |
 
 ## Executive summary
 
@@ -36,6 +38,8 @@
 - **Your photo and name in 3 taps.**
 - A **recipient page with "Make your own"** as the growth loop.
 - **Honest commerce:** real discounts, real bestsellers, no autopay traps, and **automatic refunds when something fails**. This is the trust gap competitors leave open, and it's what India's CCPA dark-pattern rules require anyway.
+
+> **Update (25 Oct 2026):** points 4 and 5 describe the original full-team plan. The founder chose a lean, solo launch, so the current plan is in `09-lean-launch-plan.md` (go-live 14 Nov 2026, weddings first), revised after the independent review in `10-prd-review.md`.
 
 **4. Validate before building.**
 - A **Diwali 2026 concierge pilot** (starting 10 Oct) tests ₹19/₹29/₹49 pricing and virality.

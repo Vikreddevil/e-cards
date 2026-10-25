@@ -1,6 +1,6 @@
-# 09 — Lean Launch Plan (solo founder + Claude, go live in ~2 weeks)
+# 09 — Lean Launch Plan (solo founder + Claude)
 
-**Status:** Draft v1 · **As of:** 2 October 2026 · **Supersedes** the timeline, team and budget in `08-roadmap-team-cost-gtm.md` for the first launch. The full PRD (`02`–`07`) stays the long-term target. This document is the **bare minimum version** we ship first.
+**Status:** Draft v2 · **Updated:** 25 October 2026 after the independent review (`10-prd-review.md`) · **First written:** 2 October 2026 · **Supersedes** the timeline, team and budget in `08-roadmap-team-cost-gtm.md` for the first launch. The full PRD (`02`–`07`) stays the long-term target. This document is the **bare minimum version** we ship first.
 
 Labels: **[V]** sourced · **[E]** estimate · **[A]** assumption.
 
@@ -10,7 +10,7 @@ Labels: **[V]** sourced · **[E]** estimate · **[A]** assumption.
 
 | Founder input | What it means for the plan |
 |---|---|
-| Go live after 1–2 weeks of build + testing | Target go-live **Fri 16 Oct 2026**, before Dussehra (20 Oct) and three weeks before **Diwali (8 Nov)** **[V]**. The Nov–Dec wedding season follows. |
+| Go live after 1–2 weeks of build + testing | The original target (16 Oct) passed before the build started. **New target: Sat 14 Nov 2026, weddings first (Option B)**. Option A (Diwali + weddings, Wed 4 Nov) only if Razorpay KYC is approved by 2 Nov and testing is complete. See `10-prd-review.md` §5 for the decision rule. |
 | Solo founder; Claude does the development | No team payroll. Managed services only. Claude also writes the templates as code. You handle accounts, KYC, testing on phones, and marketing. |
 | Video invitations for Diwali and weddings | Launch catalogue = Diwali greetings (free images, paid videos) + Diwali puja/party video invites + wedding video invites. |
 | Start slow on budget | About **₹6–7k a month** of fixed cost; no ads needed to launch (₹10–20k optional for Diwali). |
@@ -26,13 +26,16 @@ Labels: **[V]** sourced · **[E]** estimate · **[A]** assumption.
 | Catalogue | Diwali collection (Dhanteras, Diwali, Bhai Dooj), Diwali puja/party invites, wedding invites | Other festivals (added each week after launch), birthdays, Good Morning |
 | Languages | Hindi, English, Marathi, Tamil: UI + template text. Claude translates; **a native speaker reviews Marathi and Tamil** | More languages |
 | Editor | Guided slots: names, photo, message, date/time/venue (invites), music choice, language | Background removal, transliteration, AI wish writer (replaced by **ready-written wishes per language**) |
-| Output | Image (free, small logo) and video (paid, HD, no watermark); watermarked preview before paying | Multiple formats beyond Status 9:16 and Square |
-| Sharing | WhatsApp file share, link share, download; **recipient page with "Make your own"** | Replies ("send wishes back") |
-| Invitations | Event page (details, map link, add to calendar) + simple RSVP for the wedding Premium tier | RSVP export, multi-event bundles |
+| Output | Image (free, small logo) and video (paid, HD, no watermark); watermarked preview before paying. **Invitations also export JPG + PDF.** **WhatsApp-safe video spec:** ≤ 60s, 9:16 1080×1920, H.264, text kept inside safe zones and above a minimum size so it survives WhatsApp compression; a "send as document for full HD" tip | Multiple formats beyond Status 9:16 and Square; print-ready PDF with bleed |
+| Sharing | WhatsApp **file** share first, then link share and download; **recipient page with "Make your own"** | Replies ("send wishes back"); sender "viewed N times" summary (P1) |
+| Trust and safety | Share text says "Video invitation — no app download needed"; pages **never** ask for a download or install; "Safe link: no app, no login" line on event pages; user content may only link to allowlisted sites (Google Maps, YouTube); "Report" button; photo-rights and acceptable-use terms shown at upload | Automated content moderation (P1) |
+| Invitations | **Indian invitation content model:** inviting family, optional relatives list, muhurat/time, ritual/function list, RSVP contact persons, religious header symbol (Ganesha / Om / Ik Onkar / Bismillah / Cross / Jain / none). **Bride's-side and groom's-side versions** in wedding Premium. Event page with a **multi-function schedule**, map link, add to calendar; RSVP for wedding Premium | RSVP export, co-hosts, guest reminders and update notices, QR code on invites, livestream link, save-the-date and thank-you cards (all P1) |
 | Accounts | **No login.** Buyer gives phone + email at checkout. A private "manage" link is emailed for re-download and edits | OTP login, My Cards dashboard |
 | Payments | Razorpay hosted checkout (UPI intent/QR, cards, net banking), verified webhooks, **automatic refund if the render fails**, emailed receipt | Coupons, referrals, Pass, Business Plan, second gateway |
-| Ops | Log tables (orders, payments, webhooks, renders, refunds, errors); **email alerts to you** for payment failures, refund failures and render failures; PostHog analytics; Sentry errors | Grafana dashboards, PagerDuty, daily reconciliation report (in week 3) |
+| Ops | Log tables (orders, payments, webhooks, renders, refunds, errors); **email alerts to you** for payment failures, refund failures and render failures; **analytics per `11-analytics-tracking-plan.md`** (core events + launch KPIs in §6 there); Sentry errors | Grafana dashboards, PagerDuty, daily reconciliation report (in week 3) |
 | Admin | Templates are added in code by Claude; orders and refunds are viewed in the Supabase and Razorpay dashboards | Admin CMS |
+| Support | FAQ in 4 languages; WhatsApp Business number with auto-replies; order lookup through the emailed manage link; reply within 24h (4h on festival days) | Ticketing tool |
+| Link lifetime | Free cards: link live 12 months. Paid cards: 3 years. Event pages: live until 90 days after the last function, then archived; RSVP data deleted after 12 months. Stated on the pricing page | Host-paid extensions |
 | Honest pricing | "Diwali launch price" label; **no strike-through until a price has actually been charged** for 30 days; badges are "New" and "Diwali special" only, until real sales data exists | Data-driven Bestseller/Trending badges (switched on once there are ≥ 25 orders in 7 days) |
 
 ---
@@ -45,7 +48,7 @@ flowchart TD
   B --> C[Pick a template]
   C --> D[Personalise: names, photo, message,<br/>date & venue for invites, music]
   D --> E[Watermarked preview]
-  E -->|Free image greeting| F[Render image → share / download]
+  E -->|Free image greeting or invite| F[Render image → share / download]
   E -->|Paid video| G[Phone + email → Razorpay checkout<br/>UPI / card / net banking]
   G -->|Payment fails| G2[Clear message, retry, card kept]
   G -->|Verified paid| H[Render HD video ≤ 60s]
@@ -84,10 +87,11 @@ Unregistered for GST at launch (see §7), so these are the full prices.
 | Product | Price | What you get |
 |---|---|---|
 | Diwali image greeting | **Free** | Name + photo, small corner logo, share/download |
-| Diwali video greeting (15–20s, music) | **₹29** (Diwali launch price) | HD, no watermark, 3 edits within 7 days |
-| Diwali puja / party video invitation | **₹99** | 20–30s video + event page with map and add-to-calendar |
-| Wedding video invitation: Standard | **₹199** | 30–40s, 2 photos, 1 language |
-| Wedding video invitation: **Premium (Recommended)** | **₹399** | 45–60s, up to 6 photos, event page + RSVP, unlimited edits for 14 days |
+| Diwali video greeting (15–20s, music) | **₹29** (Diwali launch price; Option A only) | HD, no watermark, 3 edits within 7 days |
+| Image invitation (wedding, Diwali puja/party, griha pravesh) | **Free** with small logo · **₹49** without logo | JPG + PDF + event page; the free version keeps us competitive with free invitation makers |
+| Diwali puja / party video invitation | **₹99** | 20–30s video + event page with map and add-to-calendar (Option A only) |
+| Wedding video invitation: Standard | **₹199** | 30–40s, 2 photos, 1 language, 1 family side, JPG + PDF |
+| Wedding video invitation: **Premium (Recommended)** | **₹399** | 45–60s, up to 6 photos, **both family-side versions**, multi-function event page + RSVP, JPG + PDF, unlimited edits for 14 days |
 
 **Unit economics per sale [E]:**
 
@@ -102,16 +106,18 @@ Unregistered for GST at launch (see §7), so these are the full prices.
 
 ---
 
-## 6. Two-week schedule
+## 6. Schedule (re-baselined 25 Oct 2026)
 
-| Days | Claude builds | You do |
+**Option B (recommended):** build starts **Mon 26 Oct**; go-live **Sat 14 Nov**, about 3 weeks including buffer for KYC and native review. Option A uses the same sequence compressed to Diwali scope, with go-live Wed 4 Nov.
+
+| Days (Option B) | Claude builds | You do |
 |---|---|---|
-| **1** (Fri 2 Oct – Sat 3 Oct) | Project setup; a **live landing page with Terms, Privacy, Refund policy, Pricing and Contact pages** (Razorpay checks these during KYC) | Buy the domain; create the accounts (§7); **apply for Razorpay with KYC today** |
-| 2–5 | Catalogue, 4-language UI, editor, watermarked preview, render worker (image + video), uploads | Find 1 Marathi and 1 Tamil reviewer (friends/family); collect sample photos for testing |
-| 6–8 | Razorpay checkout + webhooks + automatic refunds; receipt emails with the manage link; recipient and event pages; RSVP; log tables; email alerts | Review the policy texts; set up support@ email |
-| 9–11 | Templates: 12 Diwali images, 6 Diwali videos, 3 Diwali invites, 6 wedding invites (Hindi / Marathi / Tamil / modern English styles), ready-written wishes in 4 languages | Native-speaker review; pick the music tracks (licence check) |
-| 12–13 | Fixes; security checklist; light load test | **Test on real phones**: a cheap Android phone, an iPhone, inside WhatsApp; test payments in test mode, including a failed payment and a refund |
-| **14** (~Fri 16 Oct) | Switch to Razorpay live keys; Search Console + sitemap; launch-day monitoring | Soft launch to family and friends + WhatsApp groups; Instagram posts |
+| **1** (Mon 26 Oct) | Project setup; a **live landing page with Terms (incl. photo rights and acceptable use), Privacy, Refund policy, Pricing, FAQ and Contact pages** (Razorpay checks these during KYC) | Buy the domain; create the accounts (§7); **submit Razorpay KYC today** if not already done |
+| 2–5 (27–30 Oct) | Catalogue, 4-language UI, editor with the Indian invitation slots, watermarked preview, render worker (image, video, PDF), uploads, analytics core (envelope + automatic events) | Find Marathi and Tamil reviewers who know **wedding invitation conventions**; collect sample photos |
+| 6–9 (31 Oct – 3 Nov) | Razorpay checkout + webhooks + automatic refunds; receipt emails with the manage link; recipient and event pages (multi-function schedule, RSVP, trust measures); log tables; email alerts; remaining analytics events | Review the policy texts; set up support@ email and the WhatsApp Business number |
+| 10–13 (4–7 Nov) | Templates: 8 wedding video invites (Hindi / Marathi / Tamil / modern English styles, both family sides), 6 image invites, 4 griha pravesh invites; Diwali free images if time allows; ready-written wishes (30 per language for the launch occasions) | Native-speaker review; pick the music tracks (licence check) |
+| 14–17 (8–11 Nov) | Fixes; security checklist; analytics QA (`11` §7.8); light load test | **Test on real phones**: a cheap Android phone, an iPhone, inside WhatsApp; test payments in test mode, including a failed payment and a refund |
+| **18–20** (12–14 Nov) | Switch to Razorpay live keys; Search Console + sitemap; launch-day monitoring | Soft launch to family and friends + WhatsApp groups; Instagram posts |
 
 **Critical path:** **Razorpay KYC approval** (usually a few working days **[A]**). If it isn't approved by launch day, we go live with free greetings and turn on paid videos the day it clears.
 
@@ -126,7 +132,8 @@ Unregistered for GST at launch (see §7), so these are the full prices.
 - [ ] **Business email** (support@yourdomain) and a **contact phone number** shown on the site, as the consumer e-commerce rules require
 - [ ] **Accounts** (free to create; Claude will guide you): GitHub, Vercel, Supabase, Cloudflare, DigitalOcean, Resend, PostHog, Sentry, Google Search Console
 - [ ] **API keys entered by you** into Vercel/Supabase settings. Never paste secrets into chat
-- [ ] **Native-speaker reviewers** for Marathi and Tamil (a few hours each)
+- [ ] **Native-speaker reviewers** for Marathi and Tamil (a few hours each), ideally people who know **wedding invitation conventions** (family names, relatives list, wording)
+- [ ] **WhatsApp Business number** for support (can be your second number)
 - [ ] **Music**: 5–8 tracks with a licence that allows use inside videos you sell (royalty-free packs; ₹0–5,000)
 - [ ] **Test devices**: one low-end Android phone + WhatsApp; an iPhone if possible
 - [ ] **Grievance contact** (can be you) named on the site

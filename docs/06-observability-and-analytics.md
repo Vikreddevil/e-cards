@@ -269,6 +269,8 @@ CREATE UNIQUE INDEX ON alert_events (alert_key) WHERE status = 'firing';
 
 ### 4.2 Event taxonomy (MVP)
 
+> **Superseded (25 Oct 2026):** the canonical event specification is now `11-analytics-tracking-plan.md`. It uses a common envelope and generic, GA4-aligned event names; §9 there maps every event below to its new name. This table is kept for history only.
+
 Naming: `object_action`, snake_case. Every event carries these common properties: `locale`, `ui_locale`, `state_code`, `device_class` (low/mid/high), `network_type`, `platform` (web/pwa/twa), `app_version`, `session_id`, `utm_*`, `entry_surface` (seo/recipient/ad/direct/push), `ref_card_id` (when it came from a recipient page).
 
 | Event | Trigger | Key properties |

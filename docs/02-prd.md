@@ -6,6 +6,8 @@
 
 Labels: **[V]** sourced (see `01-market-research.md`) · **[E]** estimate · **[A]** assumption to validate.
 
+> **Update (25 Oct 2026):** for the first launch, `09-lean-launch-plan.md` is the **source of truth** for scope, pricing, accounts, GST and dates. This PRD describes the full product. Changes accepted from the independent review (`10-prd-review.md`) are listed in §13.
+
 ---
 
 ## 1. Problem, vision, goals and non-goals
@@ -516,3 +518,28 @@ Assumptions: gateway fee ~2% + 18% GST on the fee **[V: published standard rates
 4. **GST registration** and the entity: is the company incorporated? Payment gateway KYC needs this.
 5. Is a **"from ₹19" launch price** acceptable? It's the impulse threshold; the pilot will tell us whether ₹29 converts as well.
 6. Should **Muslim and Christian festivals** (Eid, Christmas) be in the MVP catalogue? Recommended: yes for Eid and Christmas in Hindi, English and Tamil.
+
+---
+
+## 13. Changes from the independent review (25 Oct 2026)
+
+Accepted gaps from `10-prd-review.md` §3, with the phase each lands in. Launch scope details are in `09-lean-launch-plan.md` §2.
+
+| Gap | Change to this PRD | Phase |
+|---|---|---|
+| G1 | Wedding orders include **bride's-side and groom's-side versions** sharing one design and event page | Launch |
+| G2 | **Indian invitation content model**: inviting family, optional relatives list, muhurat/time, ritual list, RSVP contacts, children's line, as structured optional slots | Launch |
+| G3 | **Religious header symbol** slot (Ganesha / Om / Ik Onkar / Bismillah / Cross / Jain / none) where the design supports it | Launch |
+| G4 | **Multi-function event page** (haldi, mehendi, sangeet, wedding, reception) | Launch (wedding Premium) |
+| G5 | Invitations export **video + JPG + PDF**; print-ready PDF later | Launch / P2 |
+| G7 | **Recipient trust measures** against invitation-APK scams: file-first sharing, "no app needed" wording, no downloads or installs ever, allowlisted links only, Report button | Launch |
+| G8 | **Free image invitations** with a small logo; paid tiers for video, no logo, RSVP, both sides, multi-function page and edits | Launch |
+| G20 | **WhatsApp-safe video spec**: ≤ 60s invites, 9:16 1080×1920, H.264, safe zones, minimum text size, "send as document for HD" tip | Launch |
+| G21 | **Support model**: FAQ in 4 languages, WhatsApp Business support, order lookup by manage link, 24h reply (4h on festival days) | Launch |
+| G22 | **Link and data lifetime**: free 12 months, paid 3 years, event pages until 90 days after the last function, RSVP data deleted after 12 months | Launch |
+| G23 | Photo-rights and acceptable-use terms at upload; no impersonation or fake events | Launch |
+| G24 | Launch KPIs and engagement definitions in `11-analytics-tracking-plan.md` | Launch |
+| G6, G9–G14, G18, G19 | QR code on invites; sender "viewed N times" summary; guest reminders and event-update notices; co-hosts; "remind me to send"; save-the-date → invitation → thank-you lifecycle; livestream link; opening animation; bilingual single cards | P1 (first 30 days) |
+| G15–G17 | Guest photo gallery; group cards; venue check-in | P2 |
+| Q1–Q3 | Prices, accounts and GST at launch follow `09`. §4.2 prices here become **target pricing after launch tests** | — |
+
