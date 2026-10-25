@@ -22,6 +22,7 @@
 | 11 | [Analytics tracking plan](11-analytics-tracking-plan.md) | Vendor-neutral event spec for user engagement: common envelope, 39 generic events, engagement metric definitions, launch KPIs, implementation guide, QA and governance |
 | 12 | [Business setup: entity, Razorpay, GST](12-business-setup-razorpay-gst.md) | Start as an individual, then a proprietorship; Razorpay from signup to live payments (who does what, integration, fees, timelines); GST not needed under ₹20 lakh; CA checklist |
 | 13 | [Brand identity: CardReel](13-brand-identity.md) | Name, `cardreel.in`, social handles, deferred trademark plan, logo (`brand/` SVGs), colours with contrast, fonts for four scripts, SEO principle, voice. Visual brand board: https://claude.ai/artifact/4D4BYhFGvwSdy1DGkvaLWB |
+| 14 | [Senior PM review: launch readiness](14-senior-pm-review.md) | Scorecard, 11 ranked findings (one Launch PRD, real festival and wedding calendar, sell one thing first, design partners, Phase 0 go-to-market, template quality bar, metrics), founder decisions, re-baselined calendar |
 
 ## Executive summary
 
