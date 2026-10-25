@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 64" role="img" aria-labelledby="t">
+  <title id="t">CardReel (for dark backgrounds)</title>
+  <!-- Concept file: the text uses Baloo 2 Bold; convert the text to outlines before print or app-store use. -->
+  <rect x="4" y="10" width="56" height="44" rx="10" fill="#E5483C"/>
+  <g fill="#1A1210">
+    <rect x="12" y="14" width="6" height="4" rx="1.2"/><rect x="23" y="14" width="6" height="4" rx="1.2"/>
+    <rect x="35" y="14" width="6" height="4" rx="1.2"/><rect x="46" y="14" width="6" height="4" rx="1.2"/>
+    <rect x="12" y="46" width="6" height="4" rx="1.2"/><rect x="23" y="46" width="6" height="4" rx="1.2"/>
+    <rect x="35" y="46" width="6" height="4" rx="1.2"/><rect x="46" y="46" width="6" height="4" rx="1.2"/>
+  </g>
+  <path d="M43 32 C37 26.5 31 23.5 26 24.5 C28.2 28.5 28.2 35.5 26 39.5 C31 40.5 37 37.5 43 32 Z" fill="#F2A007"/>
+  <text x="74" y="45" font-family="'Baloo 2', 'Mukta', system-ui, sans-serif" font-size="38" font-weight="700" letter-spacing="-0.5"><tspan fill="#F7EBDD">Card</tspan><tspan fill="#FF8A80">Reel</tspan></text>
+</svg>

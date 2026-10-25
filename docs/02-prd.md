@@ -1,6 +1,6 @@
 # 02 — Product Requirements Document (PRD)
 
-**Product:** E-Cards for India (working name; see the naming question in §12)
+**Product:** **CardReel** (`cardreel.in`); brand details in `13-brand-identity.md`
 **Status:** Draft v1 for founder review · **As of:** 2 October 2026 · **Owner:** Product
 **Related:** `01-market-research.md` · `03-ux-and-conversion.md` · `04-system-design.md` · `05-payments-and-refunds.md` · `06-observability-and-analytics.md` · `07-security-and-compliance.md` · `08-roadmap-team-cost-gtm.md`
 
@@ -514,7 +514,7 @@ Assumptions: gateway fee ~2% + 18% GST on the fee **[V: published standard rates
 ## 12. Open questions for the founder
 1. Confirm the **revenue mix ambition**: invitations-led (recommended) or greetings-led?
 2. Approve the **Diwali 2026 pilot** budget: about ₹1–1.5 lakh (ads ₹50k + 3 freelance designers + a landing page).
-3. **Brand name:** shortlist 5 names so we can check .in/.com domains and trademarks (classes 9, 35, 42).
+3. ~~**Brand name**~~ **Decided: CardReel** (`cardreel.in`). Trademark filing deferred; see `13-brand-identity.md` §3.
 4. **GST registration** and the entity: is the company incorporated? Payment gateway KYC needs this.
 5. Is a **"from ₹19" launch price** acceptable? It's the impulse threshold; the pilot will tell us whether ₹29 converts as well.
 6. Should **Muslim and Christian festivals** (Eid, Christmas) be in the MVP catalogue? Recommended: yes for Eid and Christmas in Hindi, English and Tamil.

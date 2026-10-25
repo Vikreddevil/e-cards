@@ -192,6 +192,18 @@ The "Make your own" button is a `ui_click` (`element_id: make_own_cta`). The res
 | `feedback_submit` | C | Rating, CSAT, NPS or "report" submitted | `feedback_type` (`rating`/`csat`/`nps`/`report`), `score`, `item`, `reason_code` |
 | `experiment_exposure` | C | User actually sees an experiment variant | `experiment_key`, `variant` |
 
+### 4.9 Premium interest (Phase 0 free launch)
+
+During the free launch (`09` §0), premium features are shown as "coming soon". Interest is measured **with existing events**, so no new event names are needed:
+
+| What | Event | Key properties |
+|---|---|---|
+| Premium feature seen | `ui_impression` | `element.element_id = premium_teaser`, `section_id` (`editor`, `item_page`, `success`), `item` |
+| "Notify me" tapped | `ui_click` | `element.element_id = premium_notify_me`, `item` (invitation template), `section_id` |
+| Waitlist joined | `form_submit` | `form_name = premium_waitlist`, `outcome`, `channel` (`email`/`whatsapp`), `consent_marketing = true` |
+
+The contact itself (email or WhatsApp number) is stored in the database with its consent record, **never in analytics**.
+
 **Total: 39 events.** New features should first try to reuse `ui_click`, `flow_*`, `form_*`, `job_*` or `message_*` with new property values before proposing a new event.
 
 ---
@@ -222,6 +234,8 @@ All metrics can be computed from the events above.
 | **ARPU / ARPPU / AOV** | Revenue ÷ active users / ÷ paying users / ÷ orders (net of `refund(processed)`) | |
 | **RSVP rate** | `form_submit(rsvp, success)` ÷ unique `shared_item_open` on event pages | |
 | **Host return rate** | Event owners with ≥ 2 sessions on `event_manage` within 7 days | |
+| **Notify-me rate** (Phase 0) | Invitation creators with `ui_click(premium_notify_me)` ÷ invitation creators with `flow_complete(create_invitation)` | `ui_click`, `flow_complete` |
+| **Waitlist conversion** (Phase 0) | `form_submit(premium_waitlist, success)` ÷ `ui_click(premium_notify_me)` | `form_submit`, `ui_click` |
 | **Retention (D1 / D7 / D30)** | % of new users with an engaged session on day 1 / 7 / 30 | |
 | **Festival-cycle retention** | % of users active in festival window N who are active in window N+1 | |
 | **Feature adoption** | % of `flow_complete` where `step_meta` shows the feature was used (photo, ready wish, music change, 2nd language, both family sides) | `flow_step` |
@@ -243,6 +257,7 @@ Targets are **assumptions [A]**. Review them weekly and reset after the first fu
 | Checkout conversion | ≥ 60% |
 | Payment success rate | ≥ 85% |
 | Render failure rate | ≤ 1% |
+| Notify-me rate among invitation creators (Phase 0; part of the switch-on rule in `09` §0) | ≥ 3% |
 | Viral coefficient K | ≥ 0.10 |
 | RSVP rate on event pages | ≥ 30% |
 | Recipient page LCP p75 (WhatsApp in-app browser) | ≤ 2.0s |

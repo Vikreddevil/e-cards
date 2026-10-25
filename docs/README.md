@@ -1,4 +1,6 @@
-# E-Cards for India: Market Study, PRD and Technical Design
+# CardReel: Market Study, PRD and Technical Design
+
+*Wishes, cards and video invitations for every occasion, in Hindi, English, Marathi and Tamil.*
 
 **As of:** 2 October 2026 · **Status:** Draft v1 for founder review
 **Produced from:** `prompts/ecards-prd-and-system-design.md` (all 8 phases, run end-to-end without the phase stops)
@@ -15,9 +17,11 @@
 | 06 | [Logging, monitoring, alerting and analytics](06-observability-and-analytics.md) | Log table DDL, observability stack, 19 critical alerts with email routing and de-duplication, PostHog event taxonomy, funnels, experimentation |
 | 07 | [Security and compliance](07-security-and-compliance.md) | STRIDE threat model, OWASP Top 10 + API Top 10 controls, upload pipeline, abuse prevention, content moderation (IT Rules 2026), DPDP Act compliance |
 | 08 | [Roadmap, team, cost, risks and GTM](08-roadmap-team-cost-gtm.md) | Festival calendar, Gantt roadmap, team and runway, infra cost at 10K/100K/1M MAU, top 10 risks, go-to-market plan with ₹ budgets |
-| 09 | [**Lean launch plan** (solo + Claude, go live 14 Nov 2026)](09-lean-launch-plan.md) | **Start here for the first launch.** Source of truth for launch scope and pricing: reduced scope, user flow, ₹6–7k/month stack, launch pricing, re-baselined schedule, go-live checklist, brand name |
+| 09 | [**Lean launch plan** (solo + Claude; free launch first)](09-lean-launch-plan.md) | **Start here for the first launch.** Source of truth for launch scope and pricing: Phase 0 free launch, Phase 1 payments switch-on rule, user flow, ₹6–7k/month stack, pricing, relative schedule, go-live checklist |
 | 10 | [Independent PRD review](10-prd-review.md) | Neutral review against Evite, Paperless Post, Punchbowl, Kudoboard, InvitiApp, NIMNTRN, Crafty Art and Indian invite makers: scorecard, 24 gaps with priorities, inconsistencies, launch re-baseline |
 | 11 | [Analytics tracking plan](11-analytics-tracking-plan.md) | Vendor-neutral event spec for user engagement: common envelope, 39 generic events, engagement metric definitions, launch KPIs, implementation guide, QA and governance |
+| 12 | [Business setup: entity, Razorpay, GST](12-business-setup-razorpay-gst.md) | Start as an individual, then a proprietorship; Razorpay from signup to live payments (who does what, integration, fees, timelines); GST not needed under ₹20 lakh; CA checklist |
+| 13 | [Brand identity: CardReel](13-brand-identity.md) | Name, `cardreel.in`, social handles, deferred trademark plan, logo (`brand/` SVGs), colours with contrast, fonts for four scripts, SEO principle, voice. Visual brand board: https://claude.ai/artifact/4D4BYhFGvwSdy1DGkvaLWB |
 
 ## Executive summary
 
@@ -39,7 +43,7 @@
 - A **recipient page with "Make your own"** as the growth loop.
 - **Honest commerce:** real discounts, real bestsellers, no autopay traps, and **automatic refunds when something fails**. This is the trust gap competitors leave open, and it's what India's CCPA dark-pattern rules require anyway.
 
-> **Update (25 Oct 2026):** points 4 and 5 describe the original full-team plan. The founder chose a lean, solo launch, so the current plan is in `09-lean-launch-plan.md` (go-live 14 Nov 2026, weddings first), revised after the independent review in `10-prd-review.md`.
+> **Update:** points 4 and 5 describe the original full-team plan. The founder chose a lean, solo launch under the brand **CardReel** (`cardreel.in`). The product **goes live free first** (Phase 0, about 14 days after the build starts), and payments switch on in Phase 1 once Razorpay KYC is approved and demand is proven. See `09-lean-launch-plan.md`, `12-business-setup-razorpay-gst.md` and `13-brand-identity.md`.
 
 **4. Validate before building.**
 - A **Diwali 2026 concierge pilot** (starting 10 Oct) tests ₹19/₹29/₹49 pricing and virality.
@@ -67,12 +71,12 @@
 - **≈ 93% contribution margin** on net revenue per order **[E]**.
 
 ## Decisions waiting on the founder
-Each document ends with its own open questions. The ones that block work:
-1. Approve the **Diwali 2026 pilot** (~₹1–1.5 lakh) and the **invitations-led revenue model**.
-2. **Entity, GST and gateway KYC** status. Payments can't go live without them.
-3. A **brand name** shortlist (domains + trademark search).
-4. **Budget** confirmation (₹2.5–3.5 crore to Diwali 2027), or a scope cut.
-5. **Critical hires:** lead engineer and motion-design lead.
+Each document ends with its own open questions. For the lean launch, these are the ones that block work:
+1. **Go-ahead on the PRD** to start the build (Day 1 of the schedule in `09` §6).
+2. **Buy `cardreel.in`**, reserve the social handles, and run the free trademark search (`13` §1–3).
+3. **Colour direction:** keep "Festive Warm" or switch to Royal Jewel / Modern Minimal on the brand board.
+4. **Native reviewers** for Marathi and Tamil, and **licensed music** for video templates (`09` §7).
+5. For Phase 1 payments: **Razorpay KYC** once the site is live, and a **30-minute CA consultation** (`12`).
 
 ## Labels used throughout
 **[V]** sourced from a cited public report · **[E]** our estimate (logic shown) · **[A]** assumption to validate. Research used web search. Some figures come from search summaries of the cited pages, so re-check them on the live page before relying on them for money decisions.
