@@ -14,7 +14,7 @@ We **go live free first**, then switch on payments. That removes Razorpay KYC, G
 
 | | Phase 0: free launch | Phase 1: freemium (payments on) |
 |---|---|---|
-| **When** | Go-live about **14 days after the build starts** | Target **~20 Nov 2026**, once the switch-on rule below is met |
+| **When** | **Day 11** after the PRD go-ahead: staging by Day 3, a testing week, then production (`15-release-plan.md`) | **Day 18**, one week after the free launch, once the payments gate passes (`15` §3.3) |
 | **Free** | All greetings (image **and** video); image invitations; a **basic video invitation** (≤ 30s, 1 photo, 1 family side) | The same free tier stays. **Nothing that was free becomes paid** |
 | **Premium** | Shown as **"Premium — coming soon"**, with a **"Notify me"** button (explicit consent, DPDP) | Multi-photo, **both family-side versions**, multi-function event page + RSVP, no branding, HD + PDF, edits window (prices in §5) |
 | **Branding on free output** | Small corner logo + a 2-second end card: **"Made with CardReel — make yours free"** | Same on free; removed on premium |
@@ -26,12 +26,11 @@ We **go live free first**, then switch on payments. That removes Razorpay KYC, G
 - A render **queue** with "we'll notify you when it's ready" at peaks.
 - The link-lifetime policy (§2) caps storage.
 
-**Switch-on rule for Phase 1.** Turn on payments when **all** of these are true:
-1. **Razorpay KYC is approved.** Submit it as soon as the free site and policy pages are live; a live product helps approval.
-2. **At least 500 cards are shared per week.**
-3. **At least 3% of invitation creators click "Notify me"** for premium. This is measured as described in `11-analytics-tracking-plan.md` §4.9.
+**When payments switch on (founder's timeline).** Payments go live **one week after the free launch (Day 18)** if the payments gate passes: Razorpay KYC approved, payment tests passed, a live ₹1 purchase and refund verified (`15` §3.3). If KYC isn't approved by then, we stay free and switch on the day it is.
 
-If interest stays weak after 2 weeks, we revisit premium features and pricing before building payments further.
+The "Notify me" rate and waitlist (`11-analytics-tracking-plan.md` §4.9) are **tracked to size demand and set priorities**. They **no longer gate** the switch-on date.
+
+**Phase 1 scope (assumed; founder to confirm):** sell **only premium invitations** (₹199 Standard / ₹399 Premium) at first. Greetings and image invites stay free with branding (`14` §F3).
 
 **Never** give premium features away free and then take them back. Starting a new paid tier is fine; downgrading a free feature breaks trust.
 
@@ -122,8 +121,8 @@ flowchart TD
 | Product | Phase 0 | Phase 1 price | What you get |
 |---|---|---|---|
 | Image greeting | **Free** | Free | Name + photo, small corner logo, share/download |
-| Video greeting (15–20s, music) | **Free** (with logo + end card) | Free; **₹29** for HD without branding | HD, no branding, 3 edits within 7 days |
-| Image invitation (wedding, puja/party, griha pravesh) | **Free** with small logo | Free · **₹49** without logo | JPG + PDF + event page |
+| Video greeting (15–20s, music) | **Free** (with logo + end card) | Free. *Later:* ₹29 for HD without branding, if demand shows | HD, no branding, 3 edits within 7 days |
+| Image invitation (wedding, puja/party, griha pravesh) | **Free** with small logo | Free. *Later:* ₹49 without logo, if demand shows | JPG + PDF + event page |
 | Basic video invitation (≤ 30s, 1 photo, 1 family side) | **Free** (with logo + end card) | Free | Video + event page with map and add-to-calendar |
 | Wedding video invitation: Standard | Coming soon | **₹199** | 30–40s, 2 photos, 1 language, 1 family side, no branding, JPG + PDF |
 | Wedding video invitation: **Premium (Recommended)** | Coming soon | **₹399** | 45–60s, up to 6 photos, **both family-side versions**, multi-function event page + RSVP, JPG + PDF, unlimited edits for 14 days |
@@ -143,21 +142,18 @@ flowchart TD
 
 ---
 
-## 6. Schedule (relative to the build start)
+## 6. Schedule
 
-**Day 1 = the day the founder gives the go-ahead** after reading the PRD. Phase 0 goes live on **Day 14**. Phase 1 (payments) is built **during** the free phase and switched on by the rule in §0.
+**The detailed plan is in `15-release-plan.md`.** Day 0 = the founder confirms the PRD.
 
-| Days | Claude builds | You do |
+| Stage | Days | Example (Day 0 = Tue 27 Oct 2026) |
 |---|---|---|
-| **1** | Project setup; a **live site with About, Contact, Pricing (premium "coming soon"), Terms (incl. photo rights and acceptable use), Privacy, Cancellation/Refund, Delivery and FAQ pages** | Buy `cardreel.in`; reserve social handles; create the accounts (§7); **submit Razorpay KYC** once the pages are live |
-| 2–5 | Catalogue, 4-language UI, editor with the Indian invitation slots, preview, render worker (image, video, PDF), uploads, analytics core (envelope + automatic events) | Find Marathi and Tamil reviewers who know **wedding invitation conventions**; collect sample photos |
-| 6–8 | Recipient and event pages (trust measures, map, add to calendar); "Notify me" with consent; render caps + Turnstile; log tables; email alerts; remaining analytics events | Review the policy texts; set up support@cardreel.in and the WhatsApp Business number |
-| 9–11 | Templates: wedding and griha pravesh invites (image + basic video; Hindi / Marathi / Tamil / modern English styles), greetings for upcoming occasions, ready-written wishes (30 per language per launch occasion) | Native-speaker review; pick the music tracks (licence check) |
-| 12–13 | Fixes; security checklist; analytics QA (`11` §7.8); light load test | **Test on real phones**: a cheap Android phone, an iPhone, inside WhatsApp |
-| **14** | **Phase 0 go-live**: Search Console + sitemap; launch-day monitoring | Soft launch to family and friends + WhatsApp groups; Instagram posts |
-| 15+ (during the free phase) | **Phase 1 build:** Razorpay checkout (test mode), webhooks, automatic refunds, premium features (both sides, multi-function page, RSVP, no branding); payment alerts | Watch the KPIs; once KYC is approved and the switch-on rule is met, approve going live with payments |
+| Staging build (`staging.cardreel.in`, private) | D1–D3 | 28–30 Oct |
+| Testing week + fixes; payments built in test mode | D4–D10 | 31 Oct – 6 Nov |
+| **Production live, free** (`cardreel.in`); submit Razorpay KYC | D11–D17 | **Sat 7 Nov** – 13 Nov |
+| **Payments live** (premium invitations) | D18 | **Sat 14 Nov** |
 
-**Critical path:** native-speaker review and template quality. **Razorpay KYC no longer blocks launch.**
+**Critical path:** native-speaker review, template quality and licensed music for the free launch; **Razorpay KYC approval** for payments.
 
 ---
 

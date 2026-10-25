@@ -23,6 +23,7 @@
 | 12 | [Business setup: entity, Razorpay, GST](12-business-setup-razorpay-gst.md) | Start as an individual, then a proprietorship; Razorpay from signup to live payments (who does what, integration, fees, timelines); GST not needed under ₹20 lakh; CA checklist |
 | 13 | [Brand identity: CardReel](13-brand-identity.md) | Name, `cardreel.in`, social handles, deferred trademark plan, logo (`brand/` SVGs), colours with contrast, fonts for four scripts, SEO principle, voice. Visual brand board: https://claude.ai/artifact/4D4BYhFGvwSdy1DGkvaLWB |
 | 14 | [Senior PM review: launch readiness](14-senior-pm-review.md) | Scorecard, 11 ranked findings (one Launch PRD, real festival and wedding calendar, sell one thing first, design partners, Phase 0 go-to-market, template quality bar, metrics), founder decisions, re-baselined calendar |
+| 15 | [**Release plan**: staging → free launch → payments](15-release-plan.md) | Founder's timeline: staging by Day 3, testing week, free production week (Day 11), payments (Day 18). Environments, gates, founder checklist, test plan, bug severity, operations, risks |
 
 ## Executive summary
 
@@ -44,7 +45,7 @@
 - A **recipient page with "Make your own"** as the growth loop.
 - **Honest commerce:** real discounts, real bestsellers, no autopay traps, and **automatic refunds when something fails**. This is the trust gap competitors leave open, and it's what India's CCPA dark-pattern rules require anyway.
 
-> **Update:** points 4 and 5 describe the original full-team plan. The founder chose a lean, solo launch under the brand **CardReel** (`cardreel.in`). The product **goes live free first** (Phase 0, about 14 days after the build starts), and payments switch on in Phase 1 once Razorpay KYC is approved and demand is proven. See `09-lean-launch-plan.md`, `12-business-setup-razorpay-gst.md` and `13-brand-identity.md`.
+> **Update:** points 4 and 5 describe the original full-team plan. The founder chose a lean, solo launch under the brand **CardReel** (`cardreel.in`). The release plan (`15`) is: **staging by Day 3** after the PRD go-ahead, a **testing week**, **production live free on Day 11**, and **payments on Day 18** once Razorpay KYC is approved. See `09-lean-launch-plan.md`, `12-business-setup-razorpay-gst.md` and `13-brand-identity.md`.
 
 **4. Validate before building.**
 - A **Diwali 2026 concierge pilot** (starting 10 Oct) tests ₹19/₹29/₹49 pricing and virality.

@@ -217,6 +217,8 @@ Keep greetings and image invites **free with branding**. Revisit ₹29 HD greeti
 
 ## 5. Re-baselined launch calendar (if the decisions above are accepted)
 
+> **Superseded:** the founder set the timeline instead: staging in 2–3 days, a testing week, a free production week, then payments. See `15-release-plan.md`. Payments now open around **14 Nov**, for the **2–12 Dec** weddings, rather than 15 Dec.
+
 | Date (2026) | Milestone |
 |---|---|
 | 25–27 Oct | Buy `cardreel.in`; reserve handles; start design-partner outreach; source music |
