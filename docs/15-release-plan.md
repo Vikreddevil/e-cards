@@ -147,7 +147,7 @@ These must work on `staging.cardreel.in`:
 | **Security** | Upload checks (type, size, image cleaning), Turnstile, rate limits, allowlisted links only, private pages not in search results, security headers | Claude |
 | **Privacy and consent** | Consent banner; notify-me consent; delete-my-data request; children's-photo notice | Claude + founder |
 | **Analytics** | Every event in `11` fires with its required properties; no personal data in payloads | Claude |
-| **Payments (test mode)** | **P-1** success by UPI/card/net banking · **P-2** failed payment, retry keeps the card · **P-3** user closes checkout · **P-4** UPI pending, then success · **P-5** duplicate webhook ignored · **P-6** webhook missing, status check recovers · **P-7** render fails 3 times → automatic refund + email · **P-8** manual refund from the dashboard · **P-9** receipt email and manage link | Claude + founder |
+| **Payments (test mode)** | **P-1** success by UPI/card/net banking · **P-2** failed payment, retry keeps the card · **P-3** user closes checkout · **P-4** UPI pending, then success · **P-5** duplicate webhook ignored · **P-6** webhook missing, status check recovers · **P-7** render fails 3 times → automatic refund + email · **P-8** manual refund from the dashboard · **P-9** receipt email and manage link · plus the automated concurrency tests **C-1 to C-16** (`17` §6.4, §13) | Claude + founder |
 
 ### 5.2 Bug severity
 

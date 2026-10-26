@@ -114,7 +114,7 @@ flowchart TD
 | Support inbox | **Zoho Mail Free**: support@cardreel.in | ₹0 |
 | **Total** | | **≈ ₹100–600/month** (≈ ₹0 while AWS credits last) |
 
-**Video templates are built as code:** each template is an HTML/CSS/SVG animation with slots. The worker opens it in headless Chromium (which shapes Hindi, Marathi and Tamil text correctly), captures the frames, and encodes an MP4 with FFmpeg, adding the music. Claude can author these templates. Quality will be clean and modern, but not at the level of a professional motion designer. Once revenue comes in, buy or commission 3–5 hero templates.
+**Video templates are built as code:** each template is an HTML/CSS/SVG animation with slots. The worker opens it in headless Chromium (which shapes Hindi, Marathi and Tamil text correctly) and draws each text and photo layer once. FFmpeg then animates those layers over a pre-rendered background, adds the music and encodes an MP4. This is several times faster than capturing every frame (`17` §5.3). Claude can author these templates. Quality will be clean and modern, but not at the level of a professional motion designer. Once revenue comes in, buy or commission 3–5 hero templates.
 
 ---
 

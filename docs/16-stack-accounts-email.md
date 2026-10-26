@@ -55,7 +55,7 @@ New accounts also get **up to $200 in credits** (about ₹17k) on the free plan 
 **Cost guardrails:**
 - **AWS Budgets** emails at **₹500** and **₹2,000**; **Cost Anomaly Detection** on.
 - **Render concurrency cap of 20**, so a bot can't run up costs; 5 free videos per device per day; API throttling; Turnstile.
-- **CloudWatch log retention** of 14 days; **S3 lifecycle** clean-up.
+- **CloudWatch log retention** of 14 days, plus a **daily export to S3 kept for 180 days** (CERT-In requires 180 days of logs in India; `17` §8.5); **S3 lifecycle** clean-up.
 - **Never, until there's a clear need:**
   - NAT gateways (~₹3k/month);
   - idle EC2 or RDS;
@@ -94,7 +94,7 @@ New accounts also get **up to $200 in credits** (about ₹17k) on the free plan 
 All database access goes through **one repository layer** in the code. If reporting needs grow with revenue, moving to PostgreSQL (the design in `04` §6) is a contained, one-time job.
 
 **Design notes:**
-- **Tables:** `cards`, `events`, `rsvps`, `waitlist`, `orders`, `payments`, `refunds`, `webhook_events`, `render_jobs`, `counters`. A few clear tables rather than one complex single-table design.
+- **Tables:** `cards`, `events`, `rsvps`, `waitlist`, `orders`, `payments`, `webhook_events`, `render_jobs`, `counters`, `idempotency_keys`, `reports`. A few clear tables rather than one complex single-table design. Refunds live in the `payments` ledger, one partition per order (keys and indexes in `17` §4.1).
 - **Idempotency:** conditional writes on status transitions; webhook event IDs stored with a uniqueness condition.
 - **Daily export** to S3 for analysis.
 

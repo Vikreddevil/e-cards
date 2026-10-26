@@ -1,6 +1,13 @@
 # 05 — Payments, Refunds and Reconciliation
 
 **Status:** Draft v1 · **As of:** 2 October 2026 · **Owner:** Engineering (Payments) + Finance
+
+> **Launch implementation:** these rules are built on the lean AWS stack as described in `17-hld.md` §6 (DynamoDB conditional transactions, SQS FIFO per order, change streams for fulfilment). `17` also adds a few details:
+> - a new Razorpay order for each retry after a failed payment;
+> - Razorpay's refund idempotency header;
+> - a refund safety brake;
+> - Lambda/DynamoDB equivalents for the PostgreSQL and Redis mechanisms mentioned below (Secrets Manager → SSM Parameter Store).
+
 Labels: **[V]** sourced · **[E]** estimate · **[A]** assumption.
 
 **Principles**
