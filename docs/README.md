@@ -24,6 +24,7 @@
 | 13 | [Brand identity: CardReel](13-brand-identity.md) | Name, `cardreel.in`, social handles, deferred trademark plan, logo (`brand/` SVGs), colours with contrast, fonts for four scripts, SEO principle, voice. Visual brand board: https://claude.ai/artifact/4D4BYhFGvwSdy1DGkvaLWB |
 | 14 | [Senior PM review: launch readiness](14-senior-pm-review.md) | Scorecard, 11 ranked findings (one Launch PRD, real festival and wedding calendar, sell one thing first, design partners, Phase 0 go-to-market, template quality bar, metrics), founder decisions, re-baselined calendar |
 | 15 | [**Release plan**: staging → free launch → payments](15-release-plan.md) | Founder's timeline: staging by Day 3, testing week, free production week (Day 11), payments (Day 18). Environments, gates, founder checklist, test plan, bug severity, operations, risks |
+| 16 | [**Stack, accounts and email** (decided)](16-stack-accounts-email.md) | Lean AWS stack (S3 + CloudFront, Lambda, DynamoDB, SQS render, SES) at ≈ ₹100–600/month; DynamoDB vs PostgreSQL; accounts kept and dropped; AWS setup; **Zoho Mail Free** with a 0–10 user cost comparison against Google Workspace |
 
 ## Executive summary
 
@@ -59,6 +60,8 @@
 - **Public launch across Holi (22 Mar) → Gudi Padwa (7 Apr) → Puthandu (14 Apr) 2027**, one hero festival per launch language.
 - Scale for **Diwali 2027 (29 Oct)**.
 
+> **Launch stack (decided):** lean AWS in Mumbai (S3 + CloudFront, API Gateway + Lambda, DynamoDB, SQS render Lambda, SES) at about **₹100–600/month**; email on **Zoho Mail Free**. See `16`. Points 6 and 7 below describe the full-scale design and team plan for later.
+
 **6. Tech.**
 - Next.js PWA + NestJS modular monolith on **AWS Mumbai**, with **Cloudflare** at the edge (and R2 for zero-egress media).
 - PostgreSQL, SQS, Redis.
@@ -76,9 +79,10 @@
 Each document ends with its own open questions. For the lean launch, these are the ones that block work:
 1. **Go-ahead on the PRD** to start the build (Day 1 of the schedule in `09` §6).
 2. **Buy `cardreel.in`**, reserve the social handles, and run the free trademark search (`13` §1–3).
-3. ~~Colour direction~~ **Decided: Purple & Marigold** (violet `#6D28D9`, marigold `#FFB627`, mint `#5EEAD4`); see `13` §5.
-4. **Native reviewers** for Marathi and Tamil, and **licensed music** for video templates (`09` §7).
-5. For Phase 1 payments: **Razorpay KYC** once the site is live, and a **30-minute CA consultation** (`12`).
+3. ~~Stack and email~~ **Decided:** lean AWS stack with DynamoDB; Zoho Mail Free (`16`).
+4. ~~Colour direction~~ **Decided: Purple & Marigold** (violet `#6D28D9`, marigold `#FFB627`, mint `#5EEAD4`); see `13` §5.
+5. **Native reviewers** for Marathi and Tamil, and **licensed music** for video templates (`09` §7).
+6. For Phase 1 payments: **Razorpay KYC** once the site is live, and a **30-minute CA consultation** (`12`).
 
 ## Labels used throughout
 **[V]** sourced from a cited public report · **[E]** our estimate (logic shown) · **[A]** assumption to validate. Research used web search. Some figures come from search summaries of the cited pages, so re-check them on the live page before relying on them for money decisions.

@@ -45,7 +45,7 @@ The "Notify me" rate and waitlist (`11-analytics-tracking-plan.md` §4.9) are **
 | Solo founder; Claude does the development | No team payroll. Managed services only. Claude also writes the templates as code. You handle accounts, KYC, testing on phones, and marketing. |
 | Video invitations for Diwali and weddings | Launch catalogue = greetings (Diwali tail, Bhai Dooj, birthdays) + wedding and griha pravesh invitations (image + basic video free; premium video in Phase 1). |
 | Brand name | **CardReel** (`cardreel.in`). Full details in `13-brand-identity.md`. |
-| Start slow on budget | About **₹6–7k a month** of fixed cost; no ads needed to launch (₹10–20k optional). |
+| Start slow on budget | Lean AWS stack: about **₹100–600 a month** at launch (`16`); no ads needed to launch (₹10–20k optional). |
 
 ---
 
@@ -64,7 +64,7 @@ The "Notify me" rate and waitlist (`11-analytics-tracking-plan.md` §4.9) are **
 | Premium interest | **"Premium — coming soon" + "Notify me"** (email or WhatsApp, explicit consent) | Replaced by checkout in Phase 1 |
 | Payments | **None in Phase 0** | **Phase 1:** Razorpay hosted checkout (UPI intent/QR, cards, net banking), verified webhooks, **automatic refund if the render fails**, emailed receipt. Later: coupons, referrals, Pass, Business Plan, second gateway |
 | Ops | Log tables (renders, errors, and payments/webhooks/refunds from Phase 1); **email alerts to you** for render failures (plus payment and refund failures from Phase 1); **analytics per `11-analytics-tracking-plan.md`**; Sentry errors | Grafana dashboards, PagerDuty, daily reconciliation report (Phase 1, week 3) |
-| Admin | Templates are added in code by Claude; data viewed in the Supabase dashboard (Razorpay dashboard from Phase 1) | Admin CMS |
+| Admin | Templates are added in code by Claude; data viewed in the AWS console (Razorpay dashboard from Phase 1) | Admin CMS |
 | Support | FAQ in 4 languages; WhatsApp Business number with auto-replies; manage-link lookup; reply within 24h (4h on festival days) | Ticketing tool |
 | Link lifetime | Free cards: link live 12 months. Paid cards: 3 years. Event pages: live until 90 days after the last function, then archived; RSVP data deleted after 12 months. Stated on the pricing page | Host-paid extensions |
 | Honest pricing | Premium prices shown as "coming soon" (needed for Razorpay review). No strike-through until a price has actually been charged for 30 days. Badges are "New" and festival labels only, until real data exists | Data-driven Bestseller/Trending badges (once there are ≥ 25 orders in 7 days) |
@@ -94,20 +94,25 @@ flowchart TD
 
 ---
 
-## 4. Lean tech stack
+## 4. Lean tech stack (AWS, decided)
 
-| Need | Choice | Monthly cost **[E]** | Why |
-|---|---|---|---|
-| Website (Next.js, 4 languages, SEO) | **Vercel Pro** | ~₹1,800 ($20) | Fastest to ship and deploy; commercial use needs the Pro plan |
-| Database + file storage for uploads | **Supabase Pro**, Mumbai region | ~₹2,200 ($25) | Postgres + storage + daily backups in one service, hosted in India |
-| Video render worker (FFmpeg + headless Chromium) | **DigitalOcean droplet in Bangalore**, 2 vCPU / 4 GB | ~₹2,100 ($24); resize for peak weeks (+~₹1,000 prorated) | Renders 200–300 videos an hour **[E]**; jobs queue in Postgres |
-| Rendered videos/images delivery | **Cloudflare R2** + Cloudflare DNS/CDN/WAF/Turnstile (free plan) | ₹0–500 | Zero egress fees; DDoS and bot protection |
-| Payments (Phase 1) | **Razorpay** | ₹0 fixed; ~2% per payment + 18% GST on the fee **[V]** | Best docs, UPI intent, refund API, quick onboarding (`12`) |
-| Email (manage links, notify-me, alerts) | **Resend** (free tier 3,000/month) | ₹0 | Simple API |
-| Analytics / errors | **PostHog** + **Sentry** (free tiers) | ₹0 | Funnels and error tracking from day 1 |
-| Domain | **cardreel.in** (GoDaddy) | ₹1 first year; check the renewal price | — |
-| Business email | **Zoho Mail**: support@cardreel.in | ₹0 | Needed for Razorpay and trust |
-| **Total fixed** | | **≈ ₹6,000–7,000/month** | |
+**Final stack and reasoning: `16-stack-accounts-email.md`.** Everything runs in AWS Mumbai (`ap-south-1`) on pay-per-use services, mostly inside AWS's always-free allowances.
+
+| Need | Choice | Monthly cost at launch **[E]** |
+|---|---|---|
+| Website (Next.js, 4 languages, SEO) | Static build on **S3 + CloudFront** | ₹0 (1 TB/month free) |
+| Personal card and event pages | Static HTML generated at render time, on S3 + CloudFront | ₹0 |
+| API (save, render, Notify me, RSVP, payments) | **API Gateway + Lambda** | ₹0–100 |
+| Database | **DynamoDB** on-demand | ₹0–200 |
+| Video render worker (FFmpeg + headless Chromium) | **SQS → Lambda container**, max 20 at once | ₹0 for ~2,500 videos/month, then ~₹0.2 each |
+| Photos and finished cards | **S3** with clean-up rules | ₹50–150 |
+| Email sending (manage links, Notify me, alerts) | **Amazon SES** | ₹10–50 |
+| Bot check + DNS | **Cloudflare Turnstile + DNS** (free) | ₹0 |
+| Payments (Phase 1) | **Razorpay** | ₹0 fixed; ~2% per payment + 18% GST on the fee **[V]** |
+| Analytics / errors | **PostHog** + **Sentry** (free tiers) + CloudWatch | ₹0 |
+| Domain | **cardreel.in** (GoDaddy) | ₹1 first year; check the renewal price |
+| Support inbox | **Zoho Mail Free**: support@cardreel.in | ₹0 |
+| **Total** | | **≈ ₹100–600/month** (≈ ₹0 while AWS credits last) |
 
 **Video templates are built as code:** each template is an HTML/CSS/SVG animation with slots. The worker opens it in headless Chromium (which shapes Hindi, Marathi and Tamil text correctly), captures the frames, and encodes an MP4 with FFmpeg, adding the music. Claude can author these templates. Quality will be clean and modern, but not at the level of a professional motion designer. Once revenue comes in, buy or commission 3–5 hero templates.
 
@@ -136,7 +141,7 @@ flowchart TD
 
 **Break-even on fixed costs:** about **17 Premium wedding invites** or **230 HD video greetings** a month.
 
-**Cost of the free phase:** fixed costs only (≈ ₹6–7k/month). Free renders cost well under ₹1 each **[E]**. If it goes viral, the daily render cap and queue protect the budget; add a second render server (~₹2k/month) only if needed.
+**Cost of the free phase:** ≈ ₹100–600/month on AWS (`16` §4). Renders are free up to ~2,500 videos a month, then ~₹0.2 each **[E]**. If it goes viral, the daily render cap, the 20-at-once render limit and AWS Budgets alerts protect the budget.
 
 **About the discount display:** India's 2023 rules on dark patterns (from the consumer protection authority, CCPA) make a strike-through "MRP" that was never charged illegal. We use **"launch price"** and **"Recommended"** labels instead. Real strike-through prices and "Bestseller" badges switch on automatically once there's genuine price history and sales data.
 
@@ -162,9 +167,9 @@ flowchart TD
 ### Must have for Phase 0 (free launch)
 - [ ] **Domain `cardreel.in`** bought in **your name exactly as on your PAN** (Razorpay matches names later). Turn on auto-renew and two-step login at GoDaddy.
 - [ ] **Social handles** reserved: @cardreel (or @cardreel.in, the same everywhere). See `13` §2.
-- [ ] **Business email** support@cardreel.in (Zoho Mail free) and a **contact phone number** shown on the site, as the consumer e-commerce rules require.
-- [ ] **Accounts** (free to create; Claude will guide you): GitHub, Vercel, Supabase, Cloudflare, DigitalOcean, Resend, PostHog, Sentry, Google Search Console.
-- [ ] **API keys entered by you** into Vercel/Supabase settings. Never paste secrets into chat.
+- [ ] **Business email** support@cardreel.in (**Zoho Mail Free**, decided in `16` §6) and a **contact phone number** shown on the site, as the consumer e-commerce rules require.
+- [ ] **Accounts** (Claude will guide you; full list in `16` §5): **AWS** (set up as in `16` §5.3), GitHub, Cloudflare (Turnstile + DNS), PostHog, Sentry, Zoho Mail, Google Search Console.
+- [ ] **AWS access** through one CloudShell bootstrap script Claude provides (GitHub deploy role). Razorpay and other keys go into AWS SSM Parameter Store. Never paste secrets into chat.
 - [ ] **Native-speaker reviewers** for Marathi and Tamil (a few hours each), ideally people who know **wedding invitation conventions** (family names, relatives list, wording).
 - [ ] **WhatsApp Business number** for support (can be your second number).
 - [ ] **Music**: 5–8 tracks with a licence that allows use inside videos you distribute (royalty-free packs; ₹0–5,000).
@@ -205,14 +210,14 @@ Full brand identity (handles, trademark plan, logo, colours, fonts): **`13-brand
 | | Amount **[E]** |
 |---|---|
 | One-time to launch | ₹1–5k (domain, music) |
-| Fixed monthly | ₹6–7k |
-| Peak-week server resize | ~₹1k |
+| Fixed monthly (AWS) | ₹100–600 (≈ ₹0 while credits last) |
+| Email | ₹0 (Zoho Mail Free) |
 | Per sale (Phase 1) | ~2.4% gateway fee (incl. GST on the fee) + < ₹1 render |
 | Optional promotion | ₹10–20k (Instagram/Facebook boosts in Hindi/Marathi/Tamil) |
 | Trademark filing (later) | ~₹4,500 per class |
 | Your Claude subscription | Separate (whatever plan you're on) |
 
-**Scale-up path:** stay on this stack up to roughly 50–100k monthly users. Then move step by step to the PRD architecture (`04-system-design.md`): queue-based worker autoscaling, OTP accounts, an admin CMS and a second gateway. Most of the code carries over.
+**Scale-up path:** the lean AWS stack grows with usage (~₹1.5–3k/month at ~50k users; `16` §4). Later, move step by step to the PRD architecture (`04-system-design.md`): PostgreSQL if reporting needs grow, OTP accounts, an admin CMS and a second gateway. Most of the code carries over.
 
 ---
 
@@ -224,6 +229,6 @@ Full brand identity (handles, trademark plan, logo, colours, fonts): **`13-brand
 | Weak willingness to pay | "Notify me" rate tells us before we build too much; switch-on rule in §0 |
 | Razorpay KYC is delayed | No longer blocks launch; Phase 1 starts when it clears |
 | Template quality from code-built designs | Strong typography and colour; buy 3–5 hero templates from first revenue |
-| One render server becomes a bottleneck | Daily free caps, queue with "we'll notify you", resize the droplet before peak weeks |
+| Render capacity at peaks | Lambda scales automatically; a 20-at-once cap protects cost; daily free caps; queue with "we'll notify you"; check the Lambda quota on Day 1 |
 | Marathi/Tamil quality | Native review is mandatory before those templates go live |
 | Support load on a single person | Clear FAQ, automatic refunds (Phase 1), a WhatsApp Business auto-reply |

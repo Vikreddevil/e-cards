@@ -1,6 +1,8 @@
 # 04 — System Design and Architecture
 
 **Status:** Draft v1 · **As of:** 2 October 2026 · **Owner:** Engineering
+
+> **Decision note:** the **launch runs on the lean AWS stack** in `16-stack-accounts-email.md`: S3 + CloudFront, API Gateway + Lambda, **DynamoDB**, SQS + render Lambda, SES, at ≈ ₹100–600/month. This document is the **scale-up target** for later (PostgreSQL, a modular monolith on containers, and the other components below), adopted step by step when usage and revenue justify it.
 Labels: **[V]** sourced · **[E]** estimate · **[A]** assumption.
 
 **Design stance:** a small team (2–3 engineers) must be able to build and run this, and it must survive **Diwali-day spikes of 20–50x** without a rewrite. The architecture is a **modular monolith plus separately scaled render workers**, built on managed AWS services in Mumbai, with Cloudflare at the edge.

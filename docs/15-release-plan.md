@@ -50,20 +50,24 @@ gantt
 | | **Local** (Claude's workspace) | **Staging** `staging.cardreel.in` | **Production** `cardreel.in` |
 |---|---|---|---|
 | Purpose | Build and unit test | Testing week; design partners; payment tests | Real users |
-| Access | — | **Private:** Cloudflare Access (email one-time code, free for up to 50 users) + `noindex` | Public |
-| Web app | Next.js dev server | Vercel project, `staging` branch | Vercel project, `main` branch |
-| Database + uploads | Local / Supabase dev | **Separate** Supabase project (staging) | Supabase project (prod, Mumbai) |
-| Render worker | Local FFmpeg + Chromium | Same droplet, **separate queue and env** | DigitalOcean Bangalore droplet (prod queue) |
-| Media storage | Local | R2 bucket `cardreel-staging` | R2 bucket `cardreel-prod` |
+| AWS | — | Staging stack (ideally a separate staging account) | Production stack (production account) |
+| Access | — | **Private:** CloudFront basic-auth function (shared tester password) + `noindex` | Public |
+| Website | Next.js dev server | S3 + CloudFront, deployed from the `staging` branch | S3 + CloudFront, deployed from `main` |
+| API | Local functions | API Gateway + Lambda (staging) | API Gateway + Lambda (prod) |
+| Database | Local DynamoDB | DynamoDB tables (staging) | DynamoDB tables (prod), point-in-time recovery on |
+| Render worker | Local FFmpeg + Chromium | SQS + render Lambda (staging) | SQS + render Lambda (prod) |
+| Media storage | Local | S3 bucket `cardreel-staging-media` | S3 bucket `cardreel-prod-media` |
 | Payments | — | **Razorpay test mode** (works before KYC) | Live keys **from D18 only** |
 | Analytics / errors | Off | PostHog + Sentry, environment `staging` | PostHog + Sentry, environment `production` |
-| Email | Logged only | Resend (to testers only) | Resend |
+| Email | Logged only | SES (sandbox: verified testers only) | SES (production access) |
 | Data | Sample | Test data; **wiped before production launch** | Real |
 
+Stack details: `16-stack-accounts-email.md`. All infrastructure is defined in **AWS CDK** and deployed by **GitHub Actions**.
+
 **Rules:**
-- **Secrets are never shared between environments.** You enter the keys in each dashboard yourself; never paste them in chat.
+- **Secrets are never shared between environments.** Keys live in AWS SSM Parameter Store per environment; you enter them yourself. Never paste them in chat.
 - **Changes move one way:** local → staging → production. Production deploys only from `main`, after staging passes.
-- **One-click rollback:** Vercel instant rollback to the previous deploy.
+- **Fast rollback:** redeploy the previous build from GitHub Actions (static site and Lambda versions are kept).
 - **Feature switches, flipped without a deploy:** `payments_enabled`, `video_render_enabled`, `free_video_daily_cap`.
 
 ---
@@ -114,8 +118,8 @@ These must work on `staging.cardreel.in`:
 
 | When | Founder does |
 |---|---|
-| **D0** | Confirm the PRD. Buy `cardreel.in` (registrant name = PAN name). Create accounts: GitHub, Vercel, Supabase, Cloudflare, DigitalOcean, Resend, PostHog, Sentry, Razorpay (sign up only), Zoho Mail. Reserve @cardreel handles |
-| D1–D3 | Enter keys in the dashboards when asked. Confirm the music source. Line up **5 usability testers** and **8–12 design-partner families** (`14` §F4). Line up **Marathi and Tamil reviewers** |
+| **D0** | Confirm the PRD. Buy `cardreel.in` (registrant name = PAN name). Create accounts (`16` §5): **AWS** (MFA, admin user, Mumbai region, Budgets alerts), GitHub, Cloudflare (Turnstile + DNS), PostHog, Sentry, Razorpay (sign up only), **Zoho Mail Free**. Reserve @cardreel handles |
+| D1–D3 | Run the AWS CloudShell bootstrap script Claude provides. **Request SES production access** and check the Lambda quota. Add keys to SSM when asked. Confirm the music source. Line up **5 usability testers** and **8–12 design-partner families** (`14` §F4). Line up **Marathi and Tamil reviewers** |
 | D4–D10 | Run the 5 usability sessions (script in §5.3). Do the device tests. Native reviewers check templates and UI. Design partners try staging. Daily 15-minute bug triage with Claude. Approve the launch catalogue |
 | **D10** | Go/no-go for production (§3.2) |
 | D11 | Launch posts (WhatsApp, Instagram). **Submit Razorpay KYC.** Start vendor partnerships (`14` §F5) |
@@ -172,7 +176,7 @@ Bugs are tracked as GitHub issues, labelled by severity and area.
 |---|---|
 | **Monitoring** | Daily: Sentry errors, render failures and queue age, PostHog funnel, waitlist count, support messages. Email alerts for render failures (and payment/refund failures from D18) |
 | **Release rhythm** | Fixes go to staging first, then production daily at a quiet hour (late evening IST). No deploys in the 2 hours after a big post |
-| **Rollback** | Vercel instant rollback; switch off a broken template or `video_render_enabled` without a deploy |
+| **Rollback** | Redeploy the previous build from GitHub Actions; switch off a broken template or `video_render_enabled` without a deploy |
 | **Support** | WhatsApp Business + support@cardreel.in; reply within 24 hours; FAQ updated from repeated questions |
 | **Daily metrics** | Visitors, creators, completion rate, shares, recipient → creator, notify-me taps, waitlist sign-ups, render success |
 
@@ -189,3 +193,5 @@ Bugs are tracked as GitHub issues, labelled by severity and area.
 | KYC is delayed or rejected | Payments slip | Submit on D11 with a complete site; fix and resubmit fast; `payments_enabled` stays off until approved |
 | Music licence not ready | Video templates can't ship | Source confirmed by D3 |
 | Founder capacity | Testing and support suffer | Fixed daily triage slot; vendor partnerships can start in week 2 |
+| SES production access is slow | Emails reach only verified testers | Request on D1–D3; until approved, staging uses verified tester addresses |
+| Low Lambda concurrency quota on a new account | Renders queue up at launch | Check on D1; request an increase early |

@@ -62,7 +62,7 @@ flowchart LR
 | 3 | **Activation form** | You | Business type **Individual**. Personal PAN → KYC record lookup (OTP) or video KYC. Bank account (verified with a small test deposit). Website URL. Category: digital goods/services |
 | 4 | **Build the integration (test mode)** | Claude | See §2.3 |
 | 5 | **Test scenarios** | Claude + you | Success, failure, user closes checkout, duplicate webhook, refund, webhook outage (retry), UPI pending |
-| 6 | **Go live** | You enter keys, Claude switches config | Generate **live API keys** and a **live webhook** with its own secret. You enter them in the hosting dashboard; never paste secrets into chat |
+| 6 | **Go live** | You enter keys, Claude switches config | Generate **live API keys** and a **live webhook** with its own secret. You enter them in AWS SSM Parameter Store; never paste secrets into chat |
 | 7 | **First real transaction** | You | Pay ₹1–10, refund it, and confirm the settlement reaches your bank |
 | 8 | **Operate** | Both | Settlements, daily reconciliation, refund tracking, dispute (chargeback) responses within the gateway's deadlines (`05`) |
 
